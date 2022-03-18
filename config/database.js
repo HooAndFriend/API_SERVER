@@ -13,6 +13,5 @@ module.exports = (callback) => {
     if (!err) {
       callback(conn)
     }
-    console.log("success")
   })
 }

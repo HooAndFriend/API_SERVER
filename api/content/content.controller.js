@@ -15,7 +15,7 @@ exports.new = (req, res) => {
 
 exports.result = (req, res) => {
   const keyword = req.body.keyword
-  //console.log(keyword)
+  console.log(keyword)
   pool((conn) => {
     conn.query(
       "select * from board where title = ?",
