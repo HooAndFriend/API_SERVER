@@ -28,3 +28,13 @@ exports.result = (req, res) => {
     )
   })
 }
+
+exports.update = (req, res) => {
+  const id = req.body.id
+  pool((coon) => {
+    conn.query("select * from board where id = ?", id, (err, result) => {
+      if (err) console.log(err)
+      res.send({ result: true })
+    })
+  })
+}

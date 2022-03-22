@@ -3,5 +3,6 @@ const router = require("express").Router(),
 
 router.post("/new", content.new)
 router.post("/", content.result)
+router.post("/update", content.update)
 
 module.exports = router

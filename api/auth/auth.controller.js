@@ -7,7 +7,6 @@ const pool = require("../../config/database"),
 exports.login = (req, res) => {
   const b = req.body
   param = [b.id, b.pw]
-  console.log(param)
   pool((conn) => {
     conn.query("select * from user_list where id=?", param[0], (err, row) => {
       if (err) console.log(err)
