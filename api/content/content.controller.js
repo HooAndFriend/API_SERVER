@@ -1,11 +1,11 @@
 const pool = require("../../config/database")
 
+/* POST : Create Content */
 exports.new = (req, res) => {
-  const b = req.body
-  const param = [req.cookies.title, b.content, b.id]
+  const param = [0, req.body.title, req.body.text, req.body.id]
   console.log(param)
   pool((conn) => {
-    conn.query("insert into board value(?,?,?)", param, (err, doc) => {
+    conn.query("insert into tbl_board value(?,?,?,?)", param, (err, doc) => {
       if (err) console.log(err)
       res.send({ result: true })
     })
@@ -13,28 +13,27 @@ exports.new = (req, res) => {
   })
 }
 
-exports.result = (req, res) => {
-  const keyword = req.body.keyword
-  console.log(keyword)
-  pool((conn) => {
-    conn.query(
-      "select * from board where title = ?",
-      keyword,
-      (err, result) => {
-        if (err) console.log(err)
-        //console.log(result)
-        res.send({ result: result })
-      }
-    )
+/* GET : Get Content  */
+exports.list = (req, res) => {
+  const num = /^\/([0-9]+)$/.exec(req.url)[1]
+  pool((sql) => {
+    sql.query("select * from tbl_board where num = ?", num, (err, row) => {
+      err && console.log(err)
+      res.send({ block: row })
+    })
   })
 }
 
-exports.update = (req, res) => {
-  const id = req.body.id
-  pool((coon) => {
-    conn.query("select * from board where id = ?", id, (err, result) => {
-      if (err) console.log(err)
-      res.send({ result: true })
-    })
+/* POST : Get Search Result */
+exports.result = (req, res) => {
+  pool((sql) => {
+    sql.query(
+      "select * from tbl_board where title = ?",
+      req.body.keyword,
+      (err, result) => {
+        err && console.log(Err)
+        res.send({ result: result })
+      }
+    )
   })
 }

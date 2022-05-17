@@ -1,10 +1,10 @@
 const mysql = require("mysql"),
   db_info = {
-    host: "db-codename.cbpzexyay3ip.ap-northeast-2.rds.amazonaws.com",
+    host: "dmu-pino.ckct8n4nimnj.ap-northeast-2.rds.amazonaws.com",
     port: "3306",
     user: "root",
     password: "qwer1595",
-    database: "codeName",
+    database: "HAF",
   },
   pool = mysql.createPool(db_info)
 

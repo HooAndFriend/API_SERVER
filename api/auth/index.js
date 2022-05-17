@@ -3,5 +3,6 @@ const router = require("express").Router(),
 
 router.post("/login", auth.login)
 router.post("/register", auth.register)
+// router.get("/jwt", auth.jwt)
 
 module.exports = router
